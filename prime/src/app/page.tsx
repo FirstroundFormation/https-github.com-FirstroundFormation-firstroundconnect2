@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, Shield, Zap, TrendingUp, MapPin, Search } from "lucide-react";
 import RadarChart from "@/components/RadarChart";
 
@@ -104,12 +103,11 @@ export default function HomePage() {
 
                 {/* ── ATHLETE PHOTO (top half) ── */}
                 <div className="relative h-44 overflow-hidden">
-                  <Image
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                     src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80"
                     alt="Athlete PRIME"
-                    fill
-                    className="object-cover object-top"
-                    unoptimized
+                    className="absolute inset-0 w-full h-full object-cover object-top"
                   />
                   {/* Dark gradient over photo */}
                   <div className="absolute inset-0"
