@@ -192,24 +192,23 @@ export default function ScorecardPage() {
             />
           </div>
 
-          {/* PILLARS COMPACT */}
-          <div className="grid grid-cols-5 gap-1.5 mb-4">
+          {/* PILLARS COMPACT — horizontal bars */}
+          <div className="flex flex-col gap-2 mb-4">
             {PILLARS.map(({ label, score, max, color }) => {
               const pct = score / max;
               return (
-                <div key={label} className="flex flex-col items-center gap-1">
-                  {/* Vertical bar */}
-                  <div className="w-full h-14 rounded-md relative overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
+                <div key={label} className="flex items-center gap-2">
+                  <span className="font-orbitron text-[9px] font-bold w-16 shrink-0" style={{ color }}>
+                    {label.toUpperCase()}
+                  </span>
+                  <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
                     <div
-                      className="absolute bottom-0 left-0 right-0 rounded-md transition-all"
-                      style={{ height: `${pct * 100}%`, background: color, opacity: 0.85 }}
+                      className="h-full rounded-full"
+                      style={{ width: `${pct * 100}%`, background: color, boxShadow: `0 0 6px ${color}80` }}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="font-orbitron font-black text-[10px] text-white">{score}</span>
-                    </div>
                   </div>
-                  <span className="font-orbitron text-[8px] font-bold text-center leading-tight" style={{ color }}>
-                    {label.substring(0, 4).toUpperCase()}
+                  <span className="font-orbitron font-black text-[9px] w-8 text-right" style={{ color }}>
+                    {score}<span className="text-white/25">/{max}</span>
                   </span>
                 </div>
               );
