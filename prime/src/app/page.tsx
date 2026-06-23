@@ -36,46 +36,144 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 w-64 h-64 opacity-8"
           style={{ background: "linear-gradient(315deg, #1E3A8A, transparent)", clipPath: "polygon(0 40%, 0 100%, 60% 100%)" }} />
 
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/40 bg-gold/10 text-gold text-xs font-barlow font-bold tracking-widest uppercase mb-10">
-            <Zap size={12} className="fill-gold" /> Beta · Saison 2026
-          </div>
+        <div className="relative z-10 max-w-6xl mx-auto w-full flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
-          {/* Large type 32px+ — Barlow Condensed */}
-          <h1 className="font-barlow font-black uppercase leading-[0.9] tracking-tight text-white mb-6"
-            style={{ fontSize: "clamp(56px, 12vw, 120px)" }}>
-            Test ton<br />
-            <span className="text-gold">niveau.</span><br />
-            <span className="text-white/40">Prouve-le.</span>
-          </h1>
-
-          <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 font-barlow leading-relaxed">
-            10 épreuves standardisées. Une salle certifiée près de chez toi.
-            Un <strong className="text-white">PRIME Score sur 100</strong>. La vérité sur ton niveau réel.
-          </p>
-
-          {/* Search CTA — design system: Search bar IS the CTA */}
-          <div className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto mb-8">
-            <div className="flex-1 flex items-center bg-white/8 border border-white/15 backdrop-blur-sm rounded-xl px-4 gap-3">
-              <Search size={16} className="text-white/40 shrink-0" />
-              <input type="text" placeholder="Chercher une salle ou une ville..."
-                className="flex-1 py-4 text-white text-sm outline-none bg-transparent placeholder:text-white/30 font-barlow" />
+          {/* LEFT — text + search */}
+          <div className="flex-1 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/40 bg-gold/10 text-gold text-xs font-barlow font-bold tracking-widest uppercase mb-10">
+              <Zap size={12} className="fill-gold" /> Beta · Saison 2026
             </div>
-            <Link href="/salles"
-              className="px-7 py-4 bg-gold text-black font-barlow font-black text-sm uppercase tracking-widest rounded-xl hover:bg-gold/90 transition-colors whitespace-nowrap glow-gold">
-              Trouver →
-            </Link>
+
+            <h1 className="font-barlow font-black uppercase leading-[0.9] tracking-tight text-white mb-6"
+              style={{ fontSize: "clamp(56px, 9vw, 110px)" }}>
+              Find your<br />
+              <span className="text-gold">PRIME.</span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-white/60 max-w-xl mb-10 font-barlow leading-relaxed">
+              10 épreuves standardisées. Une salle certifiée près de chez toi.
+              Un <strong className="text-white">PRIME Score sur 100</strong>. La vérité sur ton niveau réel.
+            </p>
+
+            {/* Search CTA */}
+            <div className="flex flex-col sm:flex-row gap-3 max-w-lg mb-8">
+              <div className="flex-1 flex items-center bg-white/8 border border-white/15 backdrop-blur-sm rounded-xl px-4 gap-3">
+                <Search size={16} className="text-white/40 shrink-0" />
+                <input type="text" placeholder="Chercher une salle ou une ville..."
+                  className="flex-1 py-4 text-white text-sm outline-none bg-transparent placeholder:text-white/30 font-barlow" />
+              </div>
+              <Link href="/salles"
+                className="px-7 py-4 bg-gold text-black font-barlow font-black text-sm uppercase tracking-widest rounded-xl hover:bg-gold/90 transition-colors whitespace-nowrap glow-gold">
+                Trouver →
+              </Link>
+            </div>
+
+            <div className="flex flex-wrap justify-center lg:justify-start gap-2">
+              {["Paris", "Lyon", "HYROX", "CrossFit", "Bordeaux"].map(s => (
+                <Link key={s} href={`/salles?q=${s}`}
+                  className="px-3 py-1.5 text-xs font-barlow font-bold text-white/50 border border-white/10 rounded-full hover:border-gold/40 hover:text-gold transition-all duration-200 uppercase tracking-wide">
+                  {s}
+                </Link>
+              ))}
+            </div>
           </div>
 
-          {/* Popular searches */}
-          <div className="flex flex-wrap justify-center gap-2">
-            {["Paris", "Lyon", "HYROX", "CrossFit", "Bordeaux"].map(s => (
-              <Link key={s} href={`/salles?q=${s}`}
-                className="px-3 py-1.5 text-xs font-barlow font-bold text-white/50 border border-white/10 rounded-full hover:border-gold/40 hover:text-gold transition-all duration-200 uppercase tracking-wide">
-                {s}
-              </Link>
-            ))}
+          {/* RIGHT — mini PRIME Card */}
+          <div className="shrink-0 hidden lg:block">
+            <div className="relative" style={{ width: 280 }}>
+              {/* Floating glow */}
+              <div className="absolute inset-0 rounded-3xl blur-2xl opacity-40"
+                style={{ background: "radial-gradient(circle, #C9A227 0%, #1E3A8A 60%, transparent 100%)" }} />
+
+              {/* Card */}
+              <div className="relative overflow-hidden rounded-2xl"
+                style={{
+                  background: "linear-gradient(160deg, #0D0D18 0%, #0A0A0E 60%, #0D0D14 100%)",
+                  border: "1px solid rgba(201,162,39,0.45)",
+                  boxShadow: "0 0 60px rgba(201,162,39,0.25), 0 0 120px rgba(30,58,138,0.2)",
+                }}>
+
+                {/* Holographic top edge */}
+                <div className="absolute top-0 left-0 right-0 h-[2px]"
+                  style={{ background: "linear-gradient(90deg, transparent, #C9A227, #A78BFA, #3B5FCC, transparent)" }} />
+
+                {/* Ghost score bg */}
+                <div className="absolute -right-4 top-4 font-orbitron font-black leading-none pointer-events-none select-none"
+                  style={{ fontSize: 120, color: "rgba(201,162,39,0.06)" }}>72</div>
+
+                <div className="relative p-6">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="font-orbitron font-black text-sm tracking-widest text-gold">PRIME</span>
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-orbitron font-black tracking-widest"
+                      style={{ background: "rgba(59,95,204,0.2)", color: "#3B5FCC", border: "1px solid rgba(59,95,204,0.4)" }}>
+                      AVANCÉ
+                    </span>
+                  </div>
+
+                  {/* Athlete */}
+                  <p className="text-white/30 text-[10px] font-orbitron tracking-widest mb-0.5">PARIS · HYROX</p>
+                  <p className="font-barlow font-black text-white text-xl leading-tight mb-4">ALEX MARTIN</p>
+
+                  {/* Big score */}
+                  <div className="flex items-end gap-2 mb-3">
+                    <span className="font-orbitron font-black leading-none"
+                      style={{ fontSize: 72, color: "#3B5FCC", textShadow: "0 0 40px rgba(59,95,204,0.6)" }}>
+                      72
+                    </span>
+                    <div className="pb-2 flex flex-col">
+                      <span className="text-white/30 font-orbitron text-xs">/ 100</span>
+                      <span className="text-white/50 font-orbitron text-[10px]">TOP 9%</span>
+                      <span className="text-sm" style={{ color: "#3B5FCC" }}>★★★★☆</span>
+                    </div>
+                  </div>
+
+                  {/* Rainbow bar */}
+                  <div className="h-1 rounded-full mb-4 overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                    <div className="h-full rounded-full" style={{
+                      width: "72%",
+                      background: "linear-gradient(90deg, #3B5FCC 0%, #22C55E 30%, #C9A227 60%, #EF4444 80%, #A78BFA 100%)",
+                      boxShadow: "0 0 8px rgba(201,162,39,0.5)"
+                    }} />
+                  </div>
+
+                  {/* Pillar bars */}
+                  <div className="flex flex-col gap-1.5 mb-4">
+                    {[
+                      { label: "CARDIO",  color: "#3B5FCC", pct: 77 },
+                      { label: "RÉSIST",  color: "#22C55E", pct: 70 },
+                      { label: "PUISS",   color: "#C9A227", pct: 70 },
+                      { label: "FORCE",   color: "#EF4444", pct: 70 },
+                      { label: "MOBIL",   color: "#A78BFA", pct: 60 },
+                    ].map(({ label, color, pct }) => (
+                      <div key={label} className="flex items-center gap-2">
+                        <span className="font-orbitron text-[8px] font-bold w-12 shrink-0" style={{ color }}>{label}</span>
+                        <div className="flex-1 h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
+                          <div className="h-full rounded-full" style={{ width: `${pct}%`, background: color }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Footer */}
+                  <div className="pt-3 flex items-center justify-between" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                    <p className="text-white/20 text-[8px] font-orbitron tracking-widest">CROSSFIT NATION PARIS</p>
+                    <p className="text-white/20 text-[8px] font-orbitron">15 JUIN 2026</p>
+                  </div>
+                </div>
+
+                {/* Corner glow */}
+                <div className="absolute bottom-0 right-0 w-16 h-16 opacity-20"
+                  style={{ background: "radial-gradient(circle at 100% 100%, #C9A227 0%, transparent 70%)" }} />
+              </div>
+
+              {/* Label below card */}
+              <p className="text-center text-white/25 text-xs font-orbitron tracking-widest mt-3">
+                TA CARTE · EXPORTABLE PNG
+              </p>
+            </div>
           </div>
+
         </div>
       </section>
 
