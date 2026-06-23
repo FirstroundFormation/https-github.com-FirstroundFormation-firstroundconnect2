@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════
@@ -7,8 +8,6 @@
    Colors: PRIME brand palette on dark bg
    Block gap: 48px+ | Large type: 32px+ | Scroll-snap | Color-shift hovers
 ═══════════════════════════════════════ */
-
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap');
 
 @theme {
   /* PRIME brand */
