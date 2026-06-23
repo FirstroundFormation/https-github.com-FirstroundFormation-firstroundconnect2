@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "installCommand": "npm install",
+  "rootDirectory": "prime",
+  "env": {
+    "NEXT_PUBLIC_APP_URL": "https://prime-athletics.vercel.app"
+  }
+}
