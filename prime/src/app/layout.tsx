@@ -1,24 +1,30 @@
-import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import Navbar from '@/components/Navbar';
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: "Prime — Marketplace de services freelance",
-  description: "Trouvez les meilleurs freelances pour vos projets",
+  title: 'PRIME — Test ton niveau. Prouve-le.',
+  description: 'Plateforme de testing athlétique décentralisé. Obtiens ton PRIME Score sur 100.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${geist.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-gray-50 text-gray-900">
+    <html lang="fr" className={`${inter.variable} dark`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet" />
+      </head>
+      <body className="bg-black text-off-white min-h-screen flex flex-col antialiased">
         <Navbar />
         <main className="flex-1">{children}</main>
-        <footer className="border-t border-gray-200 bg-white py-8 mt-16">
-          <div className="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
-            © 2026 Prime — Marketplace de services freelance
+        <footer className="border-t border-white/10 py-8 mt-16">
+          <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40">
+            <span className="font-orbitron font-bold text-gold tracking-widest">PRIME</span>
+            <span>© 2026 PRIME Athletics. Tous droits réservés.</span>
           </div>
         </footer>
       </body>
