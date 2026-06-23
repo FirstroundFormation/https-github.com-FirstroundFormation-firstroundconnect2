@@ -1,5 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Shield, Zap, TrendingUp, MapPin, Search } from "lucide-react";
+import RadarChart from "@/components/RadarChart";
+
+const CARD_PILLARS = [
+  { label: "Cardio",     score: 27, max: 35, color: "#3B5FCC" },
+  { label: "Résistance", score: 21, max: 30, color: "#22C55E" },
+  { label: "Puissance",  score: 14, max: 20, color: "#C9A227" },
+  { label: "Force",      score: 7,  max: 10, color: "#EF4444" },
+  { label: "Mobilité",   score: 3,  max: 5,  color: "#A78BFA" },
+];
 
 const STATS = [
   { value: "2 400+", label: "Athlètes testés" },
@@ -80,56 +90,86 @@ export default function HomePage() {
 
           {/* RIGHT — mini PRIME Card */}
           <div className="shrink-0 hidden lg:block">
-            <div className="relative" style={{ width: 280 }}>
-              {/* Floating glow */}
-              <div className="absolute inset-0 rounded-3xl blur-2xl opacity-40"
-                style={{ background: "radial-gradient(circle, #C9A227 0%, #1E3A8A 60%, transparent 100%)" }} />
+            <div className="relative" style={{ width: 300 }}>
+              {/* Floating ambient glow */}
+              <div className="absolute inset-0 rounded-3xl blur-3xl opacity-50"
+                style={{ background: "radial-gradient(circle, #C9A227 0%, #1E3A8A 55%, transparent 100%)" }} />
 
               {/* Card */}
               <div className="relative overflow-hidden rounded-2xl"
                 style={{
-                  background: "linear-gradient(160deg, #0D0D18 0%, #0A0A0E 60%, #0D0D14 100%)",
                   border: "1px solid rgba(201,162,39,0.45)",
-                  boxShadow: "0 0 60px rgba(201,162,39,0.25), 0 0 120px rgba(30,58,138,0.2)",
+                  boxShadow: "0 0 60px rgba(201,162,39,0.3), 0 0 120px rgba(30,58,138,0.2)",
                 }}>
 
-                {/* Holographic top edge */}
-                <div className="absolute top-0 left-0 right-0 h-[2px]"
-                  style={{ background: "linear-gradient(90deg, transparent, #C9A227, #A78BFA, #3B5FCC, transparent)" }} />
+                {/* ── ATHLETE PHOTO (top half) ── */}
+                <div className="relative h-44 overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80"
+                    alt="Athlete PRIME"
+                    fill
+                    className="object-cover object-top"
+                    unoptimized
+                  />
+                  {/* Dark gradient over photo */}
+                  <div className="absolute inset-0"
+                    style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(10,10,14,0.7) 70%, #0A0A0E 100%)" }} />
 
-                {/* Ghost score bg */}
-                <div className="absolute -right-4 top-4 font-orbitron font-black leading-none pointer-events-none select-none"
-                  style={{ fontSize: 120, color: "rgba(201,162,39,0.06)" }}>72</div>
+                  {/* Holographic top edge */}
+                  <div className="absolute top-0 left-0 right-0 h-[2px]"
+                    style={{ background: "linear-gradient(90deg, transparent, #C9A227, #A78BFA, #3B5FCC, transparent)" }} />
 
-                <div className="relative p-6">
-                  {/* Header */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="font-orbitron font-black text-sm tracking-widest text-gold">PRIME</span>
-                    <span className="px-2 py-0.5 rounded-full text-[9px] font-orbitron font-black tracking-widest"
-                      style={{ background: "rgba(59,95,204,0.2)", color: "#3B5FCC", border: "1px solid rgba(59,95,204,0.4)" }}>
+                  {/* Logo + tier over photo */}
+                  <div className="absolute top-3 left-4 right-4 flex items-center justify-between">
+                    <span className="font-orbitron font-black text-sm tracking-widest text-gold"
+                      style={{ textShadow: "0 0 12px rgba(201,162,39,0.8)" }}>PRIME</span>
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-orbitron font-black tracking-widest backdrop-blur-sm"
+                      style={{ background: "rgba(59,95,204,0.35)", color: "#7BA3FF", border: "1px solid rgba(59,95,204,0.5)" }}>
                       AVANCÉ
                     </span>
                   </div>
 
-                  {/* Athlete */}
-                  <p className="text-white/30 text-[10px] font-orbitron tracking-widest mb-0.5">PARIS · HYROX</p>
-                  <p className="font-barlow font-black text-white text-xl leading-tight mb-4">ALEX MARTIN</p>
+                  {/* Name over photo bottom */}
+                  <div className="absolute bottom-3 left-4 right-4">
+                    <p className="text-white/50 text-[9px] font-orbitron tracking-widest">PARIS · HYROX</p>
+                    <p className="font-barlow font-black text-white text-lg leading-tight">ALEX MARTIN</p>
+                  </div>
+                </div>
 
-                  {/* Big score */}
-                  <div className="flex items-end gap-2 mb-3">
-                    <span className="font-orbitron font-black leading-none"
-                      style={{ fontSize: 72, color: "#3B5FCC", textShadow: "0 0 40px rgba(59,95,204,0.6)" }}>
-                      72
-                    </span>
-                    <div className="pb-2 flex flex-col">
-                      <span className="text-white/30 font-orbitron text-xs">/ 100</span>
-                      <span className="text-white/50 font-orbitron text-[10px]">TOP 9%</span>
-                      <span className="text-sm" style={{ color: "#3B5FCC" }}>★★★★☆</span>
+                {/* ── CARD BODY ── */}
+                <div className="relative p-5" style={{ background: "linear-gradient(160deg, #0D0D18 0%, #0A0A0E 100%)" }}>
+
+                  {/* Ghost score bg */}
+                  <div className="absolute -right-3 top-0 font-orbitron font-black leading-none pointer-events-none select-none"
+                    style={{ fontSize: 110, color: "rgba(201,162,39,0.05)" }}>72</div>
+
+                  {/* Score + radar side by side */}
+                  <div className="flex items-center justify-between mb-3">
+                    {/* Big score */}
+                    <div>
+                      <div className="flex items-end gap-1.5">
+                        <span className="font-orbitron font-black leading-none"
+                          style={{ fontSize: 64, color: "#3B5FCC", textShadow: "0 0 40px rgba(59,95,204,0.7)" }}>
+                          72
+                        </span>
+                        <div className="pb-1.5 flex flex-col">
+                          <span className="text-white/30 font-orbitron text-xs">/ 100</span>
+                          <span className="text-white/50 font-orbitron text-[9px]">TOP 9%</span>
+                          <span className="text-xs" style={{ color: "#3B5FCC" }}>★★★★☆</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Radar — spider web */}
+                    <div style={{ width: 110, height: 110, position: "relative", flexShrink: 0 }}>
+                      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+                        <RadarChart pillars={CARD_PILLARS} size={80} />
+                      </div>
                     </div>
                   </div>
 
                   {/* Rainbow bar */}
-                  <div className="h-1 rounded-full mb-4 overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                  <div className="h-1 rounded-full mb-3 overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                     <div className="h-full rounded-full" style={{
                       width: "72%",
                       background: "linear-gradient(90deg, #3B5FCC 0%, #22C55E 30%, #C9A227 60%, #EF4444 80%, #A78BFA 100%)",
@@ -140,23 +180,23 @@ export default function HomePage() {
                   {/* Pillar bars */}
                   <div className="flex flex-col gap-1.5 mb-4">
                     {[
-                      { label: "CARDIO",  color: "#3B5FCC", pct: 77 },
-                      { label: "RÉSIST",  color: "#22C55E", pct: 70 },
-                      { label: "PUISS",   color: "#C9A227", pct: 70 },
-                      { label: "FORCE",   color: "#EF4444", pct: 70 },
-                      { label: "MOBIL",   color: "#A78BFA", pct: 60 },
+                      { label: "CARDIO", color: "#3B5FCC", pct: 77 },
+                      { label: "RÉSIST", color: "#22C55E", pct: 70 },
+                      { label: "PUISS",  color: "#C9A227", pct: 70 },
+                      { label: "FORCE",  color: "#EF4444", pct: 70 },
+                      { label: "MOBIL",  color: "#A78BFA", pct: 60 },
                     ].map(({ label, color, pct }) => (
                       <div key={label} className="flex items-center gap-2">
-                        <span className="font-orbitron text-[8px] font-bold w-12 shrink-0" style={{ color }}>{label}</span>
+                        <span className="font-orbitron text-[8px] font-bold w-11 shrink-0" style={{ color }}>{label}</span>
                         <div className="flex-1 h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
-                          <div className="h-full rounded-full" style={{ width: `${pct}%`, background: color }} />
+                          <div className="h-full rounded-full" style={{ width: `${pct}%`, background: color, boxShadow: `0 0 4px ${color}80` }} />
                         </div>
                       </div>
                     ))}
                   </div>
 
                   {/* Footer */}
-                  <div className="pt-3 flex items-center justify-between" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div className="pt-2.5 flex items-center justify-between" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                     <p className="text-white/20 text-[8px] font-orbitron tracking-widest">CROSSFIT NATION PARIS</p>
                     <p className="text-white/20 text-[8px] font-orbitron">15 JUIN 2026</p>
                   </div>
