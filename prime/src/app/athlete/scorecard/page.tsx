@@ -215,9 +215,13 @@ export default function ScorecardPage() {
             })}
           </div>
 
-          {/* RADAR */}
+          {/* RADAR — wrapper sized to include label overflow */}
           <div className="flex justify-center mb-3">
-            <RadarChart pillars={PILLARS} size={150} />
+            <div style={{ width: 180, height: 180, position: "relative" }}>
+              <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+                <RadarChart pillars={PILLARS} size={120} />
+              </div>
+            </div>
           </div>
 
           {/* FOOTER */}

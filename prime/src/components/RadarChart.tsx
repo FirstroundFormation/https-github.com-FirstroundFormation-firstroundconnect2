@@ -71,17 +71,19 @@ export default function RadarChart({ pillars, size = 220 }: Props) {
 
       {/* Labels */}
       {angles.map((angle, i) => {
-        const lp = polarToXY(angle, r + 22);
+        const offset = size >= 200 ? 22 : 18;
+        const lp = polarToXY(angle, r + offset);
+        const fs = size >= 200 ? 9 : 8;
         const { label, score, max, color } = pillars[i];
         return (
           <g key={i}>
-            <text x={lp.x} y={lp.y - 4} textAnchor="middle"
-              fill={color} fontSize="9" fontFamily="'Barlow Condensed', sans-serif"
+            <text x={lp.x} y={lp.y - 3} textAnchor="middle"
+              fill={color} fontSize={fs} fontFamily="'Barlow Condensed', sans-serif"
               fontWeight="700" letterSpacing="0.05em">
               {label.toUpperCase()}
             </text>
-            <text x={lp.x} y={lp.y + 9} textAnchor="middle"
-              fill="rgba(255,255,255,0.5)" fontSize="8" fontFamily="'Barlow', sans-serif">
+            <text x={lp.x} y={lp.y + fs} textAnchor="middle"
+              fill="rgba(255,255,255,0.5)" fontSize={fs - 1} fontFamily="'Barlow', sans-serif">
               {score}/{max}
             </text>
           </g>
